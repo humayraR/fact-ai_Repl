@@ -1,0 +1,3 @@
+[submodule "DECAF"]
+	path = DECAF
+	url = https://github.com/vanderschaarlab/DECAF.git
