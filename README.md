@@ -1,4 +1,4 @@
-# FACT AO
+# FACT AI
 
 Read the README before contributing to this project
 
@@ -35,57 +35,16 @@ To get a local copy up and running follow these simple steps.
    ```sh
    .\env\Scripts\activate
    ```
-3. Go to DECAF folder
-    ```sh
-   cd DECAF
-    ```
 4. Install Python packages
    ```sh
    pip install -r requirements.txt
    pip install .
    ```
 
-## Run tests
+## Run notebook
 
-1. Make sure you are in the virtual environment (env). Otherwise, activate the virtual environment
+1. Start jupyter notebook environment
    ```sh
-   .\env\Scripts\activate
+   jupyter notebook
    ```
-2. Go to DECAF folder
-    ```sh
-   cd DECAF
-    ```
-4. Install Python packages
-   ```sh
-    pip install -r requirements_dev.txt
-    pip install .
-   ```
-5. Run the application
-    ```sh
-    pytest -vsx
-   ```
-
-## Run examples
-
-1. Make sure you are in the virtual environment (env). Otherwise, activate the virtual environment
-   ```sh
-   .\env\Scripts\activate
-   ```
-2. Go to DECAF folder
-    ```sh
-   cd DECAF
-    ```
-4. Install Python packages
-   ```sh
-    pip install -r requirements_dev.txt
-    pip install .
-   ```
-5. Run example: Base example on toy dag
-    ```sh
-    cd tests
-    python run_example.py
-   ```
-6. Run example: Example to run with a dataset size of 2000 for 300 epochs
-    ```sh
-    python run_example.py --datasize 2000 --epochs 300
-   ```
+2. Run all cells in decaf_reproducibility.ipynb

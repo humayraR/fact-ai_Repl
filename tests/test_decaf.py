@@ -174,7 +174,7 @@ def test_run_experiments(X: pd.DataFrame, y: pd.DataFrame) -> None:
         [13, 7],
     ]
     # edge removal dictionary
-    bias_dict = {}
+    bias_dict = {14: [9]}
 
     # bias_dict = {6: [9],
     #              5: [9],
