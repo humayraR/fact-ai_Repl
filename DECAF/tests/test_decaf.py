@@ -117,6 +117,7 @@ def test_run_experiments(X: pd.DataFrame, y: pd.DataFrame) -> None:
     # for column in columns_to_normalize:
     #     X[column] = (X[column] - X[column].mean()) / (X[column].std())
     #
+
     # min_max_scaler = preprocessing.MinMaxScaler()
     # x_scaled = min_max_scaler.fit_transform(X)
     # X_normalized = pd.DataFrame(x_scaled)
@@ -219,7 +220,7 @@ def test_run_experiments(X: pd.DataFrame, y: pd.DataFrame) -> None:
 
     # synth_clf = XGBClassifier().fit(X_synth, y_synth)
     synth_clf = MLPClassifier(hidden_layer_sizes=(100,), activation='relu', solver='adam',
-                                 learning_rate='constant', learning_rate_init=0.001)
+                              learning_rate='constant', learning_rate_init=0.001)
     synth_clf.fit(X_synth, y_synth)
     y_pred = synth_clf.predict(X_synth)
 
