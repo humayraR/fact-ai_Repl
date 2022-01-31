@@ -1,0 +1,17 @@
+name: factai
+dependencies:
+  - python=3.6
+  - pip
+  - pip:
+    - -r requirements.txt
+#    - loguru
+#    - networkx == 2.*
+#    - numpy == 1.19.*
+#    - pandas
+#    - pytorch-lightning == 1.4.*
+#    - scipy
+#    - sklearn
+#    - torch == 1.9.*
+#    - torchtext == 0.10.*
+#    - xgboost
+#    - pytorch-lightning == 1.4.*

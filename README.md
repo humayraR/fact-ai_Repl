@@ -10,12 +10,10 @@ To get a local copy up and running follow these simple steps.
 
 1. Install the necessary software to use:
 
-- python 3.8.7
-  https://www.python.org/downloads/release/python-387/
-  check version
-  ```sh
-    python --version
-  ```
+- conda:
+  https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html
+- jupyter notebook:
+  https://jupyter.org/install
 
 ### Installation
 
@@ -27,24 +25,20 @@ To get a local copy up and running follow these simple steps.
    ```sh
    cd .\fact-ai\
    ```
-2. Create a virtual environment
+2. Create a conda environment
    ```sh
-   python -m venv env
-   ```
-   And activate the virtual environment
-   ```sh
-   .\env\Scripts\activate
-   ```
-4. Install Python packages
-   ```sh
-   pip install -r requirements.txt
-   pip install .
+   conda env create --file environment.yml
    ```
 
 ## Run notebook
 
-1. Start jupyter notebook environment
+1. Activate conda environment (see installation)
+   ```sh
+   conda activate factai
+   ```
+2. Start jupyter notebook environment
    ```sh
    jupyter notebook
    ```
-2. Run all cells in decaf_reproducibility.ipynb
+3. Open decaf_reproducibility.ipynb
+4. Run all cells
