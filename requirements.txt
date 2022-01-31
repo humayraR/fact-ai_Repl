@@ -1,10 +1,15 @@
+ctgan
 loguru
+matplotlib
 networkx == 2.*
 numpy == 1.19.*
 pandas
+pytest
 pytorch-lightning == 1.4.*
 scipy
 sklearn
+table-evaluator
+tensorflow
 torch == 1.9.*
 torchtext == 0.10.*
 xgboost

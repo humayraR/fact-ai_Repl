@@ -12,8 +12,6 @@ To get a local copy up and running follow these simple steps.
 
 - conda:
   https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html
-- jupyter notebook:
-  https://jupyter.org/install
 
 ### Installation
 
@@ -21,11 +19,11 @@ To get a local copy up and running follow these simple steps.
    ```sh
    git clone git@github.com:yrunhaar/fact-ai.git
    ```
-   And visit the created directory
+2. Visit the created directory
    ```sh
    cd .\fact-ai\
    ```
-2. Create a conda environment
+3. Create a conda environment
    ```sh
    conda env create --file environment.yml
    ```
