@@ -39,4 +39,4 @@ To get a local copy up and running follow these simple steps.
    jupyter notebook
    ```
 3. Open decaf_reproducibility.ipynb
-4. Run all cells
+4. Under Kernel select Restart & Run all
