@@ -1,15 +1,15 @@
 ctgan
 loguru
 matplotlib
-networkx == 2.*
-numpy == 1.19.*
+networkx == 2.5.1
+numpy == 1.19.4
 pandas
+pydot
 pytest
-pytorch-lightning == 1.4.*
+pytorch-lightning == 1.4.9
 scipy
 sklearn
 table-evaluator
-tensorflow
 torch == 1.9.*
 torchtext == 0.10.*
 xgboost

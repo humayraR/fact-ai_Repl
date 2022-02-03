@@ -1,0 +1,14 @@
+javabridge
+GraphViz
+matplotlib
+numpy
+pandas
+pydot
+pytest
+scipy
+seaborn
+sklearn
+tensorflow==1.15.5
+theano==1.0.4
+torch == 1.9.*
+tqdm

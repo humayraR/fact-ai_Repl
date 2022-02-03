@@ -1,0 +1,8 @@
+name: fairgan
+dependencies:
+  - python=3.6
+  - pip
+  - jupyter
+  - pip:
+    - -r requirements_fairgan.txt
+    - git+git://github.com/bd2kccd/py-causal
