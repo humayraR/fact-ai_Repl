@@ -2,7 +2,8 @@
 *.xml
 *.iml
 *.csv
-*.xlsx
+*.x
+lsx
 *.Rhistory
 .idea/
 .coverage
@@ -16,7 +17,6 @@
 */share/
 *.cfg
 .pytest_cache
-data/
 build/
 *egg-info
 dist/
@@ -25,7 +25,6 @@ _build
 checkpoint*
 tmp*
 lightning_logs
-adult.data
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
