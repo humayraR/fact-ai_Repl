@@ -6,7 +6,7 @@ import pytorch_lightning as pl
 import torch
 from torch.utils.data import DataLoader
 
-import decaf.logger as log
+# import decaf.logger as log
 
 
 class Dataset(torch.utils.data.Dataset):

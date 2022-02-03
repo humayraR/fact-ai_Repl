@@ -77,8 +77,6 @@ def compute_parzen(orig_data, synth_data, sigma=None, start_sigma=-0.5, end_sigm
     synth_data = np.asarray(synth_data)
         
     no, x_dim = np.shape(orig_data)
-        
-    
     
     if sigma is None:
         # Divide train / test

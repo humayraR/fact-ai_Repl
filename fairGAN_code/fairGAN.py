@@ -252,7 +252,7 @@ class Medgan(object):
         np.save(outFile, outputMat)
         outFile_z = outFile + '_z'
         np.save(outFile_z, outputMat_z)
-        return outputMat
+        return outputMat, outputMat_z
     
     def calculateDiscAuc(self, preds_real, preds_fake):
         preds = np.concatenate([preds_real, preds_fake], axis=0)
