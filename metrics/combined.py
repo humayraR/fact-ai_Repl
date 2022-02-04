@@ -7,15 +7,14 @@ Created on Fri Jan 15 15:52:59 2021
 
 """
 
-
-from metrics.feature_distribution import feature_distribution
-from metrics.compute_wd import compute_wd
-from metrics.compute_identifiability import compute_identifiability
-from metrics.fid import compute_frechet_distance
-from metrics.parzen import compute_parzen
-from metrics.precision_recall import compute_prc
-from metrics.prdc import compute_prdc
-from metrics.evaluation import compute_alpha_precision
+from feature_distribution import feature_distribution
+from compute_wd import compute_wd
+from compute_identifiability import compute_identifiability
+from fid import compute_frechet_distance
+from parzen import compute_parzen
+from precision_recall import compute_prc
+from prdc import compute_prdc
+from evaluation import compute_alpha_precision
 
 import torch
 import numpy as np
