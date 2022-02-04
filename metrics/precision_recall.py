@@ -8,8 +8,8 @@ https://github.com/msmsajjadi/precision-recall-distributions/blob/master/prd_fro
 # coding=utf-8
 # Copyright: Mehdi S. M. Sajjadi (msajjadi.com)
 
-import metrics.prd_score as prd
-from metrics.improved_precision_recall import knn_precision_recall_features
+import prd_score as prd
+from improved_precision_recall import knn_precision_recall_features
 
 def compute_prc(orig_data,synth_data, params=None, plot_path=None, improved_version=True, verbose=True):
     if verbose:
