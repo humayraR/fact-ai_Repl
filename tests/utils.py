@@ -3,20 +3,23 @@ from typing import Any, Tuple
 import networkx as nx
 import numpy as np
 import pandas as pd
+from sklearn.metrics import precision_score, recall_score, roc_auc_score
+from sklearn.model_selection import train_test_split
+from sklearn.neural_network import MLPClassifier
 
 
 # It will apply a perturbation at each node provided in perturb.
 def gen_data_nonlinear(
-    G: Any,
-    base_mean: float = 0,
-    base_var: float = 0.3,
-    mean: float = 0,
-    var: float = 1,
-    SIZE: int = 10000,
-    err_type: str = "normal",
-    perturb: list = [],
-    sigmoid: bool = True,
-    expon: float = 1.1,
+        G: Any,
+        base_mean: float = 0,
+        base_var: float = 0.3,
+        mean: float = 0,
+        var: float = 1,
+        SIZE: int = 10000,
+        err_type: str = "normal",
+        perturb: list = [],
+        sigmoid: bool = True,
+        expon: float = 1.1,
 ) -> pd.DataFrame:
     list_edges = G.edges()
     list_vertex = G.nodes()
@@ -187,8 +190,56 @@ def load_adult() -> Tuple[pd.DataFrame, pd.DataFrame]:
     for row in replace:
         df = df.replace(row, range(len(row)))
 
-    df = df.values
-    X = df[:, :14].astype(np.uint32)
-    y = df[:, 14].astype(np.uint8)
+    df_values = df.values
+    X = df_values[:, :14].astype(np.uint32)
+    y = df_values[:, 14].astype(np.uint8)
 
-    return X, y
+    return X, y, df
+
+
+def get_metrics(mode, df, X_synth, y_synth):
+    # Split the data into train,test
+    traindf, testdf = train_test_split(df, test_size=0.3)
+    X_train = traindf.loc[:, traindf.columns != 'label']
+    y_train = traindf['label']
+    X_test = testdf.loc[:, testdf.columns != 'label']
+    y_test = testdf['label']
+
+    clf_df = MLPClassifier(hidden_layer_sizes=(100,), activation='relu', solver='adam',
+                           learning_rate='constant', learning_rate_init=0.001).fit(X_train, y_train)
+    '''
+    SYNTHETIC DATASET
+    '''
+    # # Make sure the data is representative of the original dataset
+    # synthetic_balanced_1 = synthetic[synthetic.label == 1].sample(22654)
+    # synthetic_balanced_0 = synthetic[synthetic.label == 0].sample(7508)
+    # synthetic_balanced = synthetic_balanced_1.append(synthetic_balanced_0)
+
+    # Split the data into train,test
+    # X_syn = synthetic_balanced.loc[:, synthetic_balanced.columns != 'label']
+    # y_syn = synthetic_balanced['label']
+
+    y_pred_syn = clf_df.predict(X_synth)
+
+    synthetic_pos = X_synth.assign(sex=0)
+    synthetic_neg = X_synth.assign(sex=1)
+
+    x_pos_syn = X_synth[round(X_synth['sex']) == 0][:7508]
+    x_neg_syn = X_synth[round(X_synth['sex']) == 1][:7508]
+
+    pos = clf_df.predict(synthetic_pos)
+    neg = clf_df.predict(synthetic_neg)
+
+    pred_pos_syn = clf_df.predict(x_pos_syn)
+    pred_neg_syn = clf_df.predict(x_neg_syn)
+
+    FTU = np.abs(np.mean(pos - neg))
+    DP = np.mean(pred_pos_syn) - np.mean(pred_neg_syn)
+
+    # Print the obtained statistics
+    print('Statistics for dataset for mode:', mode)
+    print('Precision:', precision_score(y_synth, y_pred_syn, average='binary'))
+    print('Recall:', recall_score(y_synth, y_pred_syn, average='binary'))
+    print('AUROC:', roc_auc_score(y_synth, y_pred_syn))
+    print('FTU:', FTU)
+    print('DP:', DP)
