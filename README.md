@@ -16,14 +16,7 @@ To get a local copy up and reproduce our experiments follow these simple steps.
 ### Installation
 
 1. Clone the repo
-   ```sh
-   git clone git@github.com:yrunhaar/fact-ai.git
-   ```
-2. Visit the created directory
-   ```sh
-   cd .\fact-ai\
-   ```
-3. Create a conda environment
+2. Create a conda environment
    ```sh
    conda env create --file environment.yml
    ```
@@ -46,9 +39,8 @@ To get a local copy up and reproduce our experiments follow these simple steps.
 Due to dependency conflicts between the FairGAN code using tensorflow 1.15.4 (tensorboard<1.16.0 and >=1.15.0) and the Decaf code using pytorch-lightning 1.4.9 (tensorboard>=2.2.0), the FairGAN results have to generated in a separate environment.
 
 1. Install the necessary software to use:
-    - Java 8 or higher (for javabridge):
-        https://pythonhosted.org/javabridge/installation.html
-   
+   - Java 8 or higher (for javabridge):
+     https://pythonhosted.org/javabridge/installation.html
 2. Create a conda environment
    ```sh
    conda env create --file environment_fairgan.yml
