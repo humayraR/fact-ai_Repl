@@ -71,11 +71,15 @@ def load_adult() -> Tuple[pd.DataFrame, pd.DataFrame]:
         "label",
     ]
     df = pd.read_csv(path, names=names, index_col=False)
+    print(df.head(5))
     df = df.applymap(lambda x: x.strip() if type(x) is str else x)
+    print(df.head(5))
 
     for col in df:
         if df[col].dtype == "object":
             df = df[df[col] != "?"]
+
+    print(df.head(5))
 
     replace = [
         [
@@ -243,3 +247,5 @@ def get_metrics(mode, df, X_synth, y_synth):
     print('AUROC:', roc_auc_score(y_synth, y_pred_syn))
     print('FTU:', FTU)
     print('DP:', DP)
+
+    return df, X_synth, y_synth
