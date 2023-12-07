@@ -52,3 +52,52 @@ def get_metrics(mode,df,synthetic):
     print('AUROC:',roc_auc_score(y_syn, y_pred_syn))
     print('FTU:',FTU)
     print('DP:',DP)
+
+def get_metrics2(mode,df,synthetic):
+
+    # Split the data into train,test
+    traindf, testdf = train_test_split(synthetic, test_size=0.3)
+    X_train = traindf.loc[:, traindf.columns != 'label']
+    y_train = traindf['label']
+    X_test = testdf.loc[:, testdf.columns != 'label']
+    y_test = testdf['label']
+
+    clf_df = MLPClassifier(hidden_layer_sizes=(100,), activation='relu', solver='adam',
+                                     learning_rate='constant', learning_rate_init=0.001).fit(X_train, y_train)
+    '''
+    SYNTHETIC DATASET
+    '''
+    # Make sure the data is representative of the original dataset
+    df_balanced_1 = df[df.label == 1].sample(frac = 0.75)
+    df_balanced_0 = df[df.label == 0].sample(frac = 0.25)
+    #synthetic_balanced = synthetic_balanced_1.append(synthetic_balanced_0)
+    df_balanced = pd.concat([df_balanced_1, df_balanced_0], ignore_index=True)
+
+    # Split the data into train,test
+    X_syn = df_balanced.loc[:, df_balanced.columns != 'label']
+    y_syn = df_balanced['label']
+
+    y_pred_syn = clf_df.predict(X_syn)
+
+    df_pos = df.assign(sex=0)
+    df_neg = df.assign(sex=1)
+    
+    x_pos_syn = df_balanced[df_balanced['sex'] == 0].drop(['label'], axis = 1)[:7508]
+    x_neg_syn = df_balanced[df_balanced['sex'] == 1].drop(['label'], axis = 1)[:7508]
+    
+    pos = clf_df.predict(df_pos.drop('label',axis=1))
+    neg = clf_df.predict(df_neg.drop('label',axis=1))
+
+    pred_pos_syn = clf_df.predict(x_pos_syn)
+    pred_neg_syn = clf_df.predict(x_neg_syn)
+    
+    FTU = np.abs(np.mean(pos-neg))
+    DP = np.mean(pred_pos_syn)-np.mean(pred_neg_syn)
+    
+    # Print the obtained statistics
+    print('Statistics for dataset for mode:',mode)
+    print('Precision:',precision_score(y_syn, y_pred_syn, average='binary'))
+    print('Recall:',recall_score(y_syn, y_pred_syn, average='binary'))
+    print('AUROC:',roc_auc_score(y_syn, y_pred_syn))
+    print('FTU:',FTU)
+    print('DP:',DP)
